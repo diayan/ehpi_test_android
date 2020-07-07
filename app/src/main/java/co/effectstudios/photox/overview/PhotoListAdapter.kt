@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import co.effectstudios.photox.databinding.ListViewItemBinding
 import co.effectstudios.photox.network.PhotoData
 
-class PhotoListAdapter(val onClickListener: OnClickListener) :
+class PhotoListAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<PhotoData, PhotoListAdapter.PhotoDataViewHolder>(DiffCallback) {
 
     class PhotoDataViewHolder(private var binding: ListViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: PhotoData) {
-            binding.photo = photo
+            binding.photos = photo
             binding.executePendingBindings()
         }
     }

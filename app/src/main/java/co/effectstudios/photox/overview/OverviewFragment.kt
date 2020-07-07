@@ -29,6 +29,10 @@ class OverviewFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        binding.photosRecyclerView.adapter = PhotoListAdapter(PhotoListAdapter.OnClickListener {
+            //viewModel.displayPhotoDetails(it)
+        })
+
         viewModel.photoProperties.observe(viewLifecycleOwner, Observer {
             it.forEach {
                 Log.i(TAG, "photos: ${it.toString()}")
