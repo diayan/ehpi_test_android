@@ -1,5 +1,6 @@
 package co.effectstudios.photox.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -17,6 +18,7 @@ private val moshi = Moshi.Builder()
 //retrofit builder to build a retrofit object using moshi converter
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .build()
 
@@ -24,7 +26,7 @@ private val retrofit = Retrofit.Builder()
 interface PhotoXApiService {
 
     @GET("list")
-    fun getPhotos(): Deferred<List<PhotoProperty>>
+    fun getPhotos(): Deferred<List<PhotoData>>
 }
 
 
