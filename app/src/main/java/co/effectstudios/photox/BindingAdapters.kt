@@ -14,22 +14,20 @@ import com.bumptech.glide.request.RequestOptions
 //hide recyclerview when there are no photos
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<PhotoData>?) {
-    val adapter = recyclerView.adapter as PhotoListAdapter
-    adapter.submitList(data)
+    val adapter = recyclerView.adapter as PhotoListAdapter?
+    adapter?.submitList(data)
 }
 
 //use glide to load images by url into the imageView
 @BindingAdapter("imageUrl")
-fun bindImage(imageView: ImageView, imgUrl: String?) {
+fun bindImage(imageView: ImageView, imgUrl: String?){
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-        Glide.with(imageView.context)
-            .load(imgUri)
-            .apply(
-                RequestOptions()
-                    .placeholder(R.drawable.loading_animation)
-            )
-            .error(R.drawable.ic_broken_image)
+            Glide.with(imageView.context)
+                .load(imgUri)
+                .apply(RequestOptions()
+                    .placeholder(R.drawable.loading_animation))
+                .error(R.drawable.ic_broken_image)
     }
 }
 

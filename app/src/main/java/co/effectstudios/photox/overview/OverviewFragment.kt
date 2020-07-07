@@ -10,8 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import co.effectstudios.photox.databinding.OverViewFragmentBinding
 
-//import co.effectstudios.photox.databinding.OverViewFragmentBinding
-
 private const val TAG = "OverviewFragment"
 
 class OverviewFragment : Fragment() {
@@ -28,10 +26,6 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
-
-        binding.photosRecyclerView.adapter = PhotoListAdapter(PhotoListAdapter.OnClickListener {
-            //viewModel.displayPhotoDetails(it)
-        })
 
         viewModel.photoProperties.observe(viewLifecycleOwner, Observer {
             it.forEach {

@@ -17,22 +17,4 @@ class DetailViewModel(photoData: PhotoData, app: Application) : AndroidViewModel
     init {
         _selectedPhoto.value = photoData
     }
-
-/*
-    val displayAuthorNamee = Transformations.map(selectedPhoto) {
-        app.applicationContext.getString(
-            when (it.isRental) {
-                true -> R.string.display_price_monthly_rental
-                false -> R.string.display_price
-            }, it.price)
-    }
-
-    val displayPropertyType = Transformations.map(selectedPhoto) {
-        app.applicationContext.getString(R.string.display_type,
-            app.applicationContext.getString(
-                when(it.isRental) {
-                    true -> R.string.type_rent
-                    false -> R.string.type_sale
-                }))
-    }*/
 }
