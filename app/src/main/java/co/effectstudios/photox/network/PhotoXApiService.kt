@@ -32,7 +32,6 @@ interface PhotoXApiService {
 
 //exposes retrofit service to be used publicly
 object PhotoApi {
-
     val retrofitService: PhotoXApiService by lazy {
         retrofit.create(PhotoXApiService::class.java)
     }

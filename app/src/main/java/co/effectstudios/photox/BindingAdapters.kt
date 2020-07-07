@@ -14,8 +14,8 @@ import com.bumptech.glide.request.RequestOptions
 //hide recyclerview when there are no photos
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<PhotoData>?) {
-    val adapter = recyclerView.adapter as PhotoListAdapter
-    adapter.submitList(data)
+    val adapter = recyclerView.adapter as PhotoListAdapter?
+    adapter?.submitList(data)
 }
 
 //use glide to load images by url into the imageView

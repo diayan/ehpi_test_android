@@ -10,13 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import co.effectstudios.photox.databinding.OverViewFragmentBinding
 
+//import co.effectstudios.photox.databinding.OverViewFragmentBinding
+
 private const val TAG = "OverviewFragment"
 
 class OverviewFragment : Fragment() {
 
-    private  val viewModel: OverViewViewModel by lazy {
-        ViewModelProvider(this).get(OverViewViewModel::class.java)
-    }
+    private lateinit var viewModel: OverViewViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +24,7 @@ class OverviewFragment : Fragment() {
     ): View? {
 
         val binding = OverViewFragmentBinding.inflate(inflater)
+        viewModel = ViewModelProvider(this).get(OverViewViewModel::class.java)
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
@@ -33,6 +34,7 @@ class OverviewFragment : Fragment() {
                 Log.i(TAG, "photos: ${it.toString()}")
             }
         })
+
         return binding.root
     }
 
