@@ -63,7 +63,6 @@
                 imageUrl="@{photos.downloadUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
         </androidx.cardview.widget.CardView>
