@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import co.effectstudios.photox.databinding.ListViewItemBinding
 import co.effectstudios.photox.network.PhotoData
+import co.effectstudios.photox.databinding.ListViewItemBinding
 
-class PhotoListAdapter(private val onClickListener: OnClickListener) :
+class PhotoListAdapter(val onClickListener: OnClickListener) :
     ListAdapter<PhotoData, PhotoListAdapter.PhotoDataViewHolder>(DiffCallback) {
 
-    class PhotoDataViewHolder(private var binding: ListViewItemBinding) :
+    class PhotoDataViewHolder(private var binding: ListViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: PhotoData) {
             binding.photos = photo
@@ -25,13 +25,12 @@ class PhotoListAdapter(private val onClickListener: OnClickListener) :
 
     override fun onBindViewHolder(holder: PhotoDataViewHolder, position: Int) {
         val photoItem = getItem(position)
+        //holder.bind(items[position])
         holder.itemView.setOnClickListener {
             onClickListener.onClick(photoItem)
         }
-
         holder.bind(photoItem)
     }
-
 
     //allows recyclerview to determine which items have change and update accordingly
     object DiffCallback : DiffUtil.ItemCallback<PhotoData>() {

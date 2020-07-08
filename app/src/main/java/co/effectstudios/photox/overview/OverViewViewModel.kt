@@ -1,5 +1,6 @@
 package co.effectstudios.photox.overview
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,13 +42,13 @@ class OverViewViewModel : ViewModel() {
 
             try {
 
+                //_status.value = PhotoApiStatus.LOADING
                 val listResult = getPhotodataDeferred.await()
                 _status.value = PhotoApiStatus.DONE
                 _photoProperties.value = listResult
 
             } catch (e: Exception) {
-
-                _status.value = PhotoApiStatus.ERROR
+                //_status.value = PhotoApiStatus.ERROR
                 _photoProperties.value = ArrayList()
             }
         }

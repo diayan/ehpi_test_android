@@ -8,26 +8,26 @@ import androidx.recyclerview.widget.RecyclerView
 import co.effectstudios.photox.network.PhotoData
 import co.effectstudios.photox.overview.PhotoApiStatus
 import co.effectstudios.photox.overview.PhotoListAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.squareup.picasso.Picasso
 
 //hide recyclerview when there are no photos
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<PhotoData>?) {
-    val adapter = recyclerView.adapter as PhotoListAdapter?
-    adapter?.submitList(data)
+    val adapter = recyclerView.adapter as PhotoListAdapter
+    adapter.submitList(data)
 }
 
-//use glide to load images by url into the imageView
+//use picasso to load images by url into the imageView
 @BindingAdapter("imageUrl")
-fun bindImage(imageView: ImageView, imgUrl: String?){
+fun bindImage(imageView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-            Glide.with(imageView.context)
-                .load(imgUri)
-                .apply(RequestOptions()
-                    .placeholder(R.drawable.loading_animation))
-                .error(R.drawable.ic_broken_image)
+        Picasso.get()
+            .load(imgUri)
+            .placeholder(R.drawable.loading_animation)
+            .fit()
+            .centerCrop()
+            .into(imageView)
     }
 }
 

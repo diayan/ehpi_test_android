@@ -14,26 +14,27 @@ private const val TAG = "OverviewFragment"
 
 class OverviewFragment : Fragment() {
 
-    private lateinit var viewModel: OverViewViewModel
+    private val viewModel: OverViewViewModel by lazy {
+        ViewModelProvider(this).get(OverViewViewModel::class.java)
+    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = OverViewFragmentBinding.inflate(inflater)
-        viewModel = ViewModelProvider(this).get(OverViewViewModel::class.java)
-        binding.viewModel = viewModel
-
         binding.lifecycleOwner = this
 
+        binding.viewModel = viewModel
+
+
+        binding.photosRecyclerView.adapter = PhotoListAdapter(PhotoListAdapter.OnClickListener {
+            //viewModel.displayPhotoDetails(it)
+        })
         viewModel.photoProperties.observe(viewLifecycleOwner, Observer {
             it.forEach {
-                Log.i(TAG, "photos: ${it.toString()}")
+                Log.i(TAG, "photos: ${it}")
+
             }
         })
 
         return binding.root
     }
-
 }

@@ -2,7 +2,7 @@ package co.effectstudios.photox.network
 
 import com.squareup.moshi.Json
 
-class PhotoData(
+data class PhotoData(
     @Json(name = "id")
     val id: Int,
     @Json(name = "author")
