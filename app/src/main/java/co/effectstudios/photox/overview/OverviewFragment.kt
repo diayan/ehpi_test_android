@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import co.effectstudios.photox.databinding.OverViewFragmentBinding
 
 private const val TAG = "OverviewFragment"
@@ -28,13 +29,17 @@ class OverviewFragment : Fragment() {
         binding.photosRecyclerView.adapter = PhotoListAdapter(PhotoListAdapter.OnClickListener {
             //viewModel.displayPhotoDetails(it)
         })
-        viewModel.photoProperties.observe(viewLifecycleOwner, Observer {
-            it.forEach {
-                Log.i(TAG, "photos: ${it}")
 
-            }
+        binding.photosRecyclerView.adapter = PhotoListAdapter(PhotoListAdapter.OnClickListener {
+            viewModel.displayPhotoDetails(it)
         })
 
+        viewModel.selectedPhoto.observe(viewLifecycleOwner, Observer {
+            if ( null != it ) {
+                this.findNavController().navigate(OverviewFragmentDirections.actionShowDetails(it))
+                viewModel.displayPhotoDetailsComplete()
+            }
+        })
         return binding.root
     }
 }

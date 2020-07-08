@@ -21,13 +21,9 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<PhotoData>?) {
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imgUrl: String?) {
     imgUrl?.let {
-        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Picasso.get()
-            .load(imgUri)
-            .placeholder(R.drawable.loading_animation)
-            .fit()
-            .centerCrop()
-            .into(imageView)
+            .load(imgUrl)
+             .into(imageView)
     }
 }
 

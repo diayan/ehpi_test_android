@@ -1,56 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
+
     <data>
         <variable
             name="photos"
             type="co.effectstudios.photox.network.PhotoData" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_marginBottom="4dp">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="wrap_content"
             android:elevation="10dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@id/image_card_view"
             app:layout_constraintStart_toStartOf="@id/image_card_view"
             app:layout_constraintTop_toTopOf="@id/image_card_view">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
+                imageUrl="@{photos.downloadUrl}"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="2dp"
-                imageUrl="@{photos.url}"
                 android:src="@drawable/ic_launcher_background"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/author_textView"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                tools:text="@string/app_name"
-                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="@{photos.author}"
                 android:textColor="@android:color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/profile_image"
-                app:layout_constraintStart_toEndOf="@id/profile_image"
-                app:layout_constraintTop_toBottomOf="@id/profile_image" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textSize="18sp"
+                tools:text="@string/app_name" />
+        </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/image_card_view"
             android:layout_width="match_parent"
             android:layout_height="240dp"
@@ -64,13 +59,12 @@
 
             <ImageView
                 android:id="@+id/photo_image_view"
+                imageUrl="@{photos.downloadUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                imageUrl="@{photos.url}"
                 tools:src="@tools:sample/backgrounds/scenic" />
-        </com.google.android.material.card.MaterialCardView>
-
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

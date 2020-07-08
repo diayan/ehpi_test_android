@@ -17,15 +17,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/main_photo_image"
                 android:layout_width="0dp"
-                android:layout_height="296dp"
+                android:layout_height="450dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{viewModel.selectedPhoto.url}"
+                app:imageUrl="@{viewModel.selectedPhoto.downloadUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,10 +34,13 @@
                 android:id="@+id/property_type_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="@{viewModel.selectedPhoto.author}"
                 android:textColor="#de000000"
-                android:textSize="39sp"
+                android:textSize="24sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="0dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
                 tools:text="Alejandro Escamilla" />
@@ -47,10 +49,13 @@
                 android:id="@+id/price_value_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@{viewModel.selectedPhoto.downloadUrl}"
+                android:text="@{viewModel.selectedPhoto.url}"
                 android:textColor="#de000000"
-                android:textSize="20sp"
+                android:textSize="15sp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/property_type_text"
                 tools:text="https://picsum.photos/id/0/5616/3744" />

@@ -9,14 +9,19 @@
         android:id="@+id/overviewFragment"
         android:name="co.effectstudios.photox.overview.OverviewFragment"
         android:label="over_view_fragment"
-        tools:layout="@layout/over_view_fragment" >
+        tools:layout="@layout/over_view_fragment">
         <action
-            android:id="@+id/action_overviewFragment_to_detailFragment"
+            android:id="@+id/action_showDetails"
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="co.effectstudios.photox.detail.DetailFragment"
         android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" />
+        tools:layout="@layout/detail_fragment">
+        <argument
+            android:name="selectedPhoto"
+            app:argType="co.effectstudios.photox.network.PhotoData" />
+
+    </fragment>
 </navigation>

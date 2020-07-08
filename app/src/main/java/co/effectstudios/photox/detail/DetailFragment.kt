@@ -6,22 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import co.effectstudios.photox.R
+import co.effectstudios.photox.databinding.DetailFragmentBinding
 
 class DetailFragment : Fragment() {
 
-    private lateinit var viewModel: DetailViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.detail_fragment, container, false)
-    }
+        val application = requireNotNull(activity).application
+        val binding = DetailFragmentBinding.inflate(inflater)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        binding.lifecycleOwner = this
+        val photoData = DetailFragmentArgs.fromBundle(arguments!!).selectedPhoto
+        val viewModelFactory = DetailViewModelFactory(photoData, application)
+
+        binding.viewModel = ViewModelProvider(
+            this, viewModelFactory).get(DetailViewModel::class.java)
+
+        return binding.root
     }
 
 }

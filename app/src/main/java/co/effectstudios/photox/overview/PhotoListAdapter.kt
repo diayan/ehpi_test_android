@@ -15,6 +15,7 @@ class PhotoListAdapter(val onClickListener: OnClickListener) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: PhotoData) {
             binding.photos = photo
+            //binding.authorTextView.text = photo.author
             binding.executePendingBindings()
         }
     }
@@ -25,7 +26,6 @@ class PhotoListAdapter(val onClickListener: OnClickListener) :
 
     override fun onBindViewHolder(holder: PhotoDataViewHolder, position: Int) {
         val photoItem = getItem(position)
-        //holder.bind(items[position])
         holder.itemView.setOnClickListener {
             onClickListener.onClick(photoItem)
         }
